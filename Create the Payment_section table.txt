@@ -1,0 +1,86 @@
+-- Create the Payment_section table
+CREATE TABLE Payment_section (
+    Customer_id INT PRIMARY KEY,
+    Customer_name VARCHAR(50),
+    Payment_mode VARCHAR(20),
+    City VARCHAR(50)
+);
+
+-- Insert 60 rows of customer payment data
+INSERT INTO Payment_section (Customer_id, Customer_name, Payment_mode, City) VALUES
+(1, 'Rahul Sharma', 'Credit Card', 'Mumbai'),
+(2, 'Priya Patel', 'UPI', 'Delhi'),
+(3, 'Amit Singh', 'Debit Card', 'Bangalore'),
+(4, 'Neha Gupta', 'Net Banking', 'Hyderabad'),
+(5, 'Vikram Joshi', 'Wallet', 'Chennai'),
+(6, 'Ananya Reddy', 'Credit Card', 'Kolkata'),
+(7, 'Rahul Sharma', 'UPI', 'New York'),
+(8, 'Arjun Kumar', 'Debit Card', 'London'),
+(9, 'Priya Patel', 'Net Banking', 'Mumbai'),
+(10, 'Sneha Malhotra', 'Wallet', 'Delhi'),
+(11, 'Rajesh Iyer', 'Credit Card', 'Bangalore'),
+(12, 'Rahul Sharma', 'UPI', 'Hyderabad'),
+(13, 'Meera Nair', 'Debit Card', 'Chennai'),
+(14, 'Priya Patel', 'Net Banking', 'Kolkata'),
+(15, 'Aditya Rao', 'Wallet', 'Dubai'),
+(16, 'Anjali Mehta', 'Credit Card', 'Singapore'),
+(17, 'Rahul Sharma', 'UPI', 'Mumbai'),
+(18, 'Karan Verma', 'Debit Card', 'Delhi'),
+(19, 'Neha Gupta', 'Net Banking', 'Bangalore'),
+(20, 'Vivek Choudhary', 'Wallet', 'Hyderabad'),
+(21, 'Priya Patel', 'Credit Card', 'Chennai'),
+(22, 'Riya Kapoor', 'UPI', 'Kolkata'),
+(23, 'Rahul Sharma', 'Debit Card', 'Tokyo'),
+(24, 'Ankit Desai', 'Net Banking', 'Mumbai'),
+(25, 'Neha Gupta', 'Wallet', 'Delhi'),
+(26, 'Suresh Menon', 'Credit Card', 'Bangalore'),
+(27, 'Priya Patel', 'UPI', 'Hyderabad'),
+(28, 'Rahul Sharma', 'Debit Card', 'Chennai'),
+(29, 'Divya Jain', 'Net Banking', 'Kolkata'),
+(30, 'Neha Gupta', 'Wallet', 'Sydney'),
+(31, 'Arun Saxena', 'Credit Card', 'Mumbai'),
+(32, 'Priya Patel', 'UPI', 'Delhi'),
+(33, 'Rahul Sharma', 'Debit Card', 'Bangalore'),
+(34, 'Pooja Reddy', 'Net Banking', 'Hyderabad'),
+(35, 'Neha Gupta', 'Wallet', 'Chennai'),
+(36, 'Manoj Tiwari', 'Credit Card', 'Kolkata'),
+(37, 'Priya Patel', 'UPI', 'Paris'),
+(38, 'Rahul Sharma', 'Debit Card', 'Mumbai'),
+(39, 'Swati Khanna', 'Net Banking', 'Delhi'),
+(40, 'Neha Gupta', 'Wallet', 'Bangalore'),
+(41, 'Alok Pandey', 'Credit Card', 'Hyderabad'),
+(42, 'Priya Patel', 'UPI', 'Chennai'),
+(43, 'Rahul Sharma', 'Debit Card', 'Kolkata'),
+(44, 'Neha Gupta', 'Net Banking', 'Berlin'),
+(45, 'Sanjay Mishra', 'Wallet', 'Mumbai'),
+(46, 'Priya Patel', 'Credit Card', 'Delhi'),
+(47, 'Rahul Sharma', 'UPI', 'Bangalore'),
+(48, 'Neha Gupta', 'Debit Card', 'Hyderabad'),
+(49, 'Geeta Rani', 'Net Banking', 'Chennai'),
+(50, 'Priya Patel', 'Wallet', 'Kolkata'),
+(51, 'Rahul Sharma', 'Credit Card', 'Toronto'),
+(52, 'Neha Gupta', 'UPI', 'Mumbai'),
+(53, 'Vishal Bhatt', 'Debit Card', 'Delhi'),
+(54, 'Priya Patel', 'Net Banking', 'Bangalore'),
+(55, 'Rahul Sharma', 'Wallet', 'Hyderabad'),
+(56, 'Neha Gupta', 'Credit Card', 'Chennai'),
+(57, 'Deepak Sharma', 'UPI', 'Kolkata'),
+(58, 'Priya Patel', 'Debit Card', 'Rome'),
+(59, 'Rahul Sharma', 'Net Banking', 'Mumbai'),
+(60, 'Neha Gupta', 'Wallet', 'Delhi');
+
+
+
+-- Query 1: Get the count of transactions by city and payment mode
+SELECT city, payment_mode, COUNT(*) as transaction_count 
+FROM Payment_section
+GROUP BY city, payment_mode;
+
+-- Query 2: Get the total number of distinct payment modes used
+SELECT COUNT(DISTINCT payment_mode) as payment_mode 
+FROM Payment_section;
+
+-- Query 3: Get the count of transactions by city
+SELECT city, COUNT(*) as timd 
+FROM Payment_section
+GROUP BY city;
