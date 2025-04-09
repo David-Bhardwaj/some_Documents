@@ -84,3 +84,65 @@ FROM Payment_section;
 SELECT city, COUNT(*) as timd 
 FROM Payment_section
 GROUP BY city;
+
+
+-- Count of Each Payment Mode (Grouped by Payment Mode)
+SELECT payment_mode, COUNT(*) AS transaction_count
+FROM Payment_section
+GROUP BY payment_mode
+ORDER BY transaction_count DESC;
+
+
+-- Cities with the Most Transactions
+SELECT city, COUNT(*) AS transaction_count
+FROM Payment_section
+GROUP BY city
+ORDER BY transaction_count DESC;
+
+-- Find Customers Who Used Multiple Payment Methods
+SELECT Customer_id, Customer_name, COUNT(DISTINCT payment_mode) AS unique_payment_methods
+FROM Payment_section
+GROUP BY Customer_id, Customer_name
+HAVING COUNT(DISTINCT payment_mode) > 1;
+--HAVING COUNT(DISTINCT payment_mode) >= 1;
+
+
+
+--Most Popular Payment Mode for Each City
+WITH PaymentRank AS (
+    SELECT city, payment_mode, COUNT(*) AS transaction_count,
+           RANK() OVER (PARTITION BY city ORDER BY COUNT(*) DESC) AS rank
+    FROM Payment_section
+    GROUP BY city, payment_mode
+)
+SELECT city, payment_mode, transaction_count
+FROM PaymentRank
+WHERE rank = 1;
+
+
+
+
+--Customers Who Have Not Used 'Credit Card' Payment Mode
+SELECT DISTINCT Customer_id, Customer_name
+FROM Payment_section
+WHERE Customer_id NOT IN (
+    SELECT DISTINCT Customer_id
+    FROM Payment_section
+    WHERE payment_mode = 'Credit Card'
+);
+
+
+
+
+
+
+--Compare Transaction Counts between Two Payment Modes (e.g., 'Credit Card' vs. 'UPI')
+SELECT city, 
+       SUM(CASE WHEN payment_mode = 'Credit Card' THEN 1 ELSE 0 END) AS credit_card_count,
+       SUM(CASE WHEN payment_mode = 'UPI' THEN 1 ELSE 0 END) AS upi_count
+FROM Payment_section
+GROUP BY city;
+
+
+
+
